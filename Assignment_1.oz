@@ -31,7 +31,7 @@ end
 %Task 4: Functions and procedures
 
 % 4a) Max function shows 89
-fun {Max X Y}
+declare fun {Max X Y}
     if X > Y then
         X
     else
@@ -42,7 +42,7 @@ end
 {System.showInfo {Max 10 89}}
 
 % 4b) PrintGreater procedure shows 100
-proc {PrintGreater X Y}
+declare proc {PrintGreater X Y}
     if X > Y then
         {System.showInfo X}
     else
@@ -54,11 +54,15 @@ end
 
 %Task 5: Variables II
 
-proc {Circle R}
+declare proc {Circle R}
    local Pi A D C in
       Pi = 355.0 / 113.0
       A = Pi * R * R
-      {System.showInfo A}  
+      D = 2 * R
+      C = Pi * D
+      {System.showInfo A}
+      {System.showInfo D}  
+      {System.showInfo C}
    end
 end
 {Circle 5} 
@@ -66,7 +70,7 @@ end
 %Task 6: Recursion
 
 % Factorial function using recursion
-fun {Factorial N}
+declare fun {Factorial N}
    if N == 0 then
       1  % Base case: 0! = 1
    else
@@ -80,7 +84,7 @@ end
 %Task 7: Lists
 
 % 7a) Length function - returns the element count of List
-fun {Length List}
+declare fun {Length List}
    case List of
       nil then 0
    [] Head|Tail then
@@ -88,10 +92,10 @@ fun {Length List}
    end
 end
 
-{System.showInfo {Length [1 2 3 4 5]}} % Should output 5
+{System.showInfo {Length [1 2 3 4 5]}}
 
 % 7b) Take function - returns first Count elements
-fun {Take List Count}
+declare fun {Take List Count}
    if Count =< 0 then
       nil
    else
@@ -103,10 +107,10 @@ fun {Take List Count}
    end
 end
 
-{System.showInfo {Take [1 2 3 4 5] 3}} % Should output [1 2 3]
+{System.showInfo {Take [1 2 3 4 5] 3}} 
 
 % 7c) Drop function - returns list without first Count elements
-fun {Drop List Count}
+declare fun {Drop List Count}
    if Count =< 0 then
       List
    else
@@ -118,10 +122,10 @@ fun {Drop List Count}
    end
 end
 
-{System.showInfo {Drop [1 2 3 4 5] 2}} % Should output [3 4 5]
+{System.showInfo {Drop [1 2 3 4 5] 2}}
 
 % 7d) Append function - concatenates List1 and List2
-fun {Append List1 List2}
+declare fun {Append List1 List2}
    case List1 of
       nil then List2
    [] Head|Tail then
@@ -129,10 +133,10 @@ fun {Append List1 List2}
    end
 end
 
-{System.showInfo {Append [1 2] [3 4 5]}} % Should output [1 2 3 4 5]
+{System.showInfo {Append [1 2] [3 4 5]}} 
 
 % 7e) Member function - returns true if Element is in List
-fun {Member List Element}
+declare fun {Member List Element}
    case List of
       nil then false
    [] Head|Tail then
@@ -144,11 +148,11 @@ fun {Member List Element}
    end
 end
 
-{System.showInfo {Member [1 2 3] 2}} % Should output true
-{System.showInfo {Member [1 2 3] 4}} % Should output false
+{System.showInfo {Member [1 2 3] 2}} 
+{System.showInfo {Member [1 2 3] 4}} 
 
 % 7f) Position function - returns position of Element in List (1-based)
-fun {Position List Element}
+declare fun {Position List Element}
    fun {PositionHelper List Element Index}
       case List of
          Head|Tail then
@@ -163,7 +167,7 @@ in
    {PositionHelper List Element 1}
 end
 
-{System.showInfo {Position [a b c d] c}} % Should output 3
+{System.showInfo {Position [a b c d] c}}
 
 
 %Task 8: Stack Operations
@@ -174,7 +178,7 @@ fun {Push List Element}
 end
 
 % 8b) Peek function - returns first element of List, or nil if empty
-fun {Peek List}
+declare fun {Peek List}
    case List of
       nil then nil
    [] Head|Tail then Head
@@ -182,7 +186,7 @@ fun {Peek List}
 end
 
 % 8c) Pop function - returns List without the first element
-fun {Pop List}
+declare fun {Pop List}
    case List of
       nil then nil
    [] Head|Tail then Tail
